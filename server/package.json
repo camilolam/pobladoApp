@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "ImahDev (Camilo Canaveral)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-myconnection": "^1.0.4",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20"
+  }
+}
