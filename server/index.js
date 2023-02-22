@@ -3,6 +3,7 @@ var mysql = require('mysql');
 const path  = require('path');
 const myconn = require('express-myconnection');
 const routes = require('./routes')
+const cors = require('cors')
 
 
 var app = express();
@@ -15,6 +16,10 @@ var dbInfo = {
     password: "Maria1234.",
     database:"cvp_info"
   };
+
+app.use(cors())
+
+app.use(express.json())
 
 app.use(express.static(path.join(__dirname,'../public')));
 
