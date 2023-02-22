@@ -1,24 +1,18 @@
 const express =  require('express');
 const routes = express.Router()
 
-routes.get('/readCustomers',(req,res)=>{
+routes.get('/readCustomers/:ident',(req,res)=>{
+    let ident = req.params.ident
     req.getConnection((err,conn)=>{
         if(err) return res.send(err);
-        var queryStr = `SELECT * FROM clients`
+        var queryStr = `SELECT * FROM clients where identification = '${ident}'`
         conn.query(queryStr,(err,rows)=>{
             if(err) return res.send(err);
             console.log(rows);
-            //if(rows.lenght !=0){
-            res.json(rows);
-                /*}else{
-                    res.json({
-                        msg:"Customer not found"
-                    })
-                }*/
-                
+            console.log(rows.length)
+            res.json(rows)          
         });
      });
-
 });
 
 module.exports = routes
