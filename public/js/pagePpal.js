@@ -24,7 +24,7 @@ btn_read.addEventListener('click',readCustomers);
 btn_auth.addEventListener('click', userValidation);
 
 
-//customerSearchSection.style.display = 'none';
+customerSearchSection.style.display = 'none';
 
 function userValidation(){
     console.log(usernameStr.value)
@@ -47,18 +47,35 @@ function userValidation(){
                         .then(function(message){
                             console.log(message)
                             if(message.message == "Accepted"){
-                                alert('Welcome to CVP App')
-                                //authSection.style.display = 'none'
-                                //customerSearchSection.style.display = 'block';
+                                Swal.fire({
+                                    title:"Access Granted",
+                                    text:'You are available to use CVP APP',
+                                    icon: 'success'
+                                })
+                                authSection.style.display = 'none'
+                                customerSearchSection.style.display = 'block';
 
-                            }else{
-                                alert('User not found')
+                            }else if(message.message == 'Denied'){
+                                Swal.fire({
+                                    title:"Access Denied",
+                                    icon: 'error'
+                                })
+                            }else if(message.message == "user not found"){
+                                Swal.fire({
+                                    title:"user not found",
+                                    icon: 'error'
+                                })
                             }
+                            
                         })
                 }
             })
     }else{ 
-        alert("Some Empty Field")
+        Swal.fire({
+            title:"Some Empty Fields",
+            text:'Enter all the fields',
+            icon: 'warning'
+        })
     }
 }
 
@@ -74,13 +91,22 @@ function readCustomers(){
                             console.log(respuesta)
                             console.log(respuesta.length)
                             if(respuesta.length != 0){
-                                alert(`Hi ${respuesta[0].name}`)
+                               
+                                Swal.fire({
+                                    title:`Customer ${respuesta[0].name}`,
+                                    text:'Aailable customer',
+                                    icon: 'success'
+                                })
                                 idStr.innerHTML =respuesta[0].clientId
                                 nameStr.innerHTML =respuesta[0].name
                                 identificationStr.innerHTML =respuesta[0].identification
                                 nContracts.innerHTML =respuesta[0].numberOfContracts
                             }else{
-                                alert('Customer not found')
+                                
+                                Swal.fire({
+                                    title:"Customer Not Found",
+                                    icon: 'error'
+                                })
                             }
                             
                         })

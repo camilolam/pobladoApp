@@ -14,6 +14,19 @@ body{
     margin: 0 auto;
     text-align: center;
 
+
+}
+
+.btn{
+    text-decoration: none;
+    border: none;
+    padding: 10px 0;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.btn:hover{
+    background-color:darkgrey;
 }
 
 .auth_section{
@@ -51,10 +64,14 @@ body{
 
 .input_auth{
    margin-top: 20px;
+   
 }
 
 .input_auth input{
-    padding: 6px;
+    padding: 10px ;
+    border:none;
+    border-radius: 10px;
+    width: 100%;
  }
 
 
@@ -88,7 +105,6 @@ body{
 }
 #btn_read{
     margin: 20px 0;
-    width: 70%;
 }
 
 .customer{

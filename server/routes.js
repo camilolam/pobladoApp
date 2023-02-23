@@ -14,11 +14,11 @@ routes.post('/validation',(req,res)=>{
                 if(passwordReq==rows[0].password){
                     res.json({ message:"Accepted"}) 
                 }else{
-                    res.json({ message:"Access Denied" }) 
+                    res.json({ message:"Denied" }) 
                 }
             }
             else{
-                res.json({message:"user not exits"}) 
+                res.json({message:"user not found"}) 
             }         
         });
      });
