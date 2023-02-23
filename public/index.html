@@ -6,43 +6,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="stylesheet" href="./css/normalize.css">
+        <script src="https://kit.fontawesome.com/0673e8148c.js" crossorigin="anonymous"></script>
         <title>CVP</title>
     </head>
     <body>
-        <div class="contenedor">
-            <h1>CVP Application</h1>
-            <section class="auth_section">
-                <h2>Authentification</h2>
-                <div class="input_auth">
-                    <input id="username_auth" type="text" placeholder="Username">
+        <div class="head_section">
+            <h1 class="main_title">CVP App</h1>
+            <div class="login_info">
+                <p>username</p>
+            </div>
+        </div>
+        <button class="btn" id="btn_menu">***</button>
+        <div class="contenedor_sidebar_content">
+                <aside id="aside_menu">
+                <div class="memu_options ">
+                    <button class="btn btn_aside active">Customers</button>
+                    <button class="btn btn_aside">Contracts</button>
+                    <button class="btn btn_aside">Employs</button>
+                    <button class="btn btn_aside">Payments</button>
+                    <button class="btn btn_aside">Controbutions</button>
+                    <button class="btn btn_aside">Additionals Movements</button>
                 </div>
-                <div class="input_auth">
-                    <input id="password_auth" type="password" placeholder="Password">
-                </div>
+            </aside>
+            <div class="contenedor">
                 
+                <section class="auth_section">
+                    <h2>Authentification</h2>
+                    <div class="input_auth">
+                        <input id="username_auth" type="text" placeholder="Username">
+                    </div>
+                    <div class="input_auth">
+                        <input id="password_auth" type="password" placeholder="Password">
+                    </div>
                     <a href="#">Forgot password?</a>
                     <button id="btn_auth" class="btn">Accept</button>
-   
+       
+                    
+                </section>
+                <section class="customer_read">
+                    <h2>Customer</h2>
+                    <div class="input_auth input_auth_both">
+                        <input id="ident" type="text" placeholder="Identification number">
+                    </div>
+                    <button id="btn_read" class="btn">Search</button>
+                    
+                    <div class="customer">
+                        <p>ID:                  <scan id="customerId"></scan></p>
+                        <p>Name:                <scan id="name"></scan></p>
+                        <p>Identification:      <scan id="identification"></scan></p>
+                        <p>Number of Contracts: <scan id="numberOfContracts"></scan></p>
+                    </div>
                 
-            </section>
-
-            <section class="customer_read">
-                <h2>Customer</h2>
-                <div class="input_auth">
-                    <input id="ident" type="text" placeholder="Identification number">
-                    <button id="btn_read">Read Customers</button>
-                </div>
-                
-                <div class="customer">
-                    <p>ID:                  <scan id="customerId"></scan></p>
-                    <p>Name:                <scan id="name"></scan></p>
-                    <p>Identification:      <scan id="identification"></scan></p>
-                    <p>Number of Contracts: <scan id="numberOfContracts"></scan></p>
-                </div>
-            
-            </section>
+                </section>
+            </div>
         </div>
-        
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="./js/pagePpal.js"></script>

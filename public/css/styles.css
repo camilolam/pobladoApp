@@ -13,31 +13,31 @@ body{
     width: 90%;
     margin: 0 auto;
     text-align: center;
-
-
+    padding: 20px 0;
 }
 
 .btn{
     text-decoration: none;
     border: none;
     padding: 10px 0;
-    margin-top: 20px;
     border-radius: 10px;
+    color: black;
+    
 }
 
 .btn:hover{
-    background-color:darkgrey;
+    background-color: gray;
+    color: aliceblue;
 }
 
 .auth_section{
     display:flex;
     flex-direction: column;
-    border: 1px solid black;
     border-radius: 20px;
     width: 100%;
     padding: 20px 40px 30px 40px;
     margin-bottom: 20px;
-    background-color: bisque;
+    background-color: white;
     text-decoration: none;
     color: black;
 }
@@ -69,9 +69,14 @@ body{
 
 .input_auth input{
     padding: 10px ;
-    border:none;
+    border:solid 0.5px black;
     border-radius: 10px;
     width: 100%;
+ }
+
+
+ .input_auth_both{
+    display: flex;
  }
 
 
@@ -85,7 +90,7 @@ body{
     width: 100%;
     padding: 20px 40px 30px 40px;
     margin-bottom: 20px;
-    background-color: bisque;
+    background-color: white;
     text-decoration: none;
     color: black;
 }
@@ -105,8 +110,91 @@ body{
 }
 #btn_read{
     margin: 20px 0;
+    width: 100%;
 }
 
 .customer{
     text-align: left;
+}
+
+
+
+/***************************/
+
+#aside_menu{
+    display: none;
+    text-align: center;
+    background-color:white;
+    color: black;
+    padding: 20px 0;
+}
+#btn_menu{
+    background-color: grey;
+    width: 100%;
+    color: white;
+    border-radius: 0;
+}
+
+#aside_menu .memu_options{
+    list-style: none;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.btn_aside{
+    width: 100%;
+    padding: 20px 0;
+    border-radius: 0;
+    background-color: white;
+    color: black;
+}
+
+@media (min-width: 1200px) {
+    #aside_menu{
+        width: 25%;
+        height: 100vh;
+        display: block;
+    }
+
+    #btn_menu{
+        display: none;
+    }
+
+    .contenedor_sidebar_content{
+        display: flex;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    #aside_menu h2{
+        margin: 20px 0;
+    }
+    
+    #aside_menu .memu_options{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.active{
+    background-color: darkgrey;
+    width: 110%;
+    height: 100%;
+    border-radius: 10px;
+    color: aliceblue;
+}
+.main_title {
+    margin: 0;
+}
+.head_section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: grey;
+    color: white;
+    padding: 10px;
 }

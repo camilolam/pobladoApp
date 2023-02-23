@@ -3,11 +3,12 @@ const idStr = document.querySelector('#customerId');
 const nameStr = document.querySelector('#name');
 const identificationStr = document.querySelector('#identification');
 const nContracts= document.querySelector('#numberOfContracts');
-
+const  asideMenu = document.querySelector('#aside_menu');
 
 // buttons
 const btn_read = document.querySelector('#btn_read');
 const btn_auth = document.querySelector('#btn_auth');
+const btn_menu_responsive = document.querySelector('#btn_menu');
 
 //vars
 const identStr = document.querySelector('#ident');
@@ -18,13 +19,25 @@ const passwordStr = document.querySelector('#password_auth')
 const customerSearchSection = document.querySelector('.customer_read');
 const authSection = document.querySelector('.auth_section');
 
+// program vars
+let menuFlag = false
 
 
 btn_read.addEventListener('click',readCustomers);
 btn_auth.addEventListener('click', userValidation);
-
+btn_menu_responsive.addEventListener('click',()=>{
+    if(menuFlag == false){
+        asideMenu.style.display = 'block';
+        menuFlag = true;
+    }else{
+        asideMenu.style.display = 'none';
+        menuFlag = false;
+    }
+    
+});
 
 customerSearchSection.style.display = 'none';
+
 
 function userValidation(){
     console.log(usernameStr.value)
@@ -62,7 +75,7 @@ function userValidation(){
                                 })
                             }else if(message.message == "user not found"){
                                 Swal.fire({
-                                    title:"user not found",
+                                    title:"User Not Found",
                                     icon: 'error'
                                 })
                             }
@@ -73,7 +86,7 @@ function userValidation(){
     }else{ 
         Swal.fire({
             title:"Some Empty Fields",
-            text:'Enter all the fields',
+            text:'Enter all Fields',
             icon: 'warning'
         })
     }
@@ -82,6 +95,10 @@ function userValidation(){
 function readCustomers(){
     
     console.log(identStr.value)
+    idStr.innerHTML =""
+    nameStr.innerHTML =""
+    identificationStr.innerHTML =""
+    nContracts.innerHTML =""
     if(identStr.value != ""){
         fetch( `http://192.168.0.117:9000/readCustomers/${identStr.value}`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
             .then(function(res){
@@ -94,7 +111,7 @@ function readCustomers(){
                                
                                 Swal.fire({
                                     title:`Customer ${respuesta[0].name}`,
-                                    text:'Aailable customer',
+                                    text:'Available Customer',
                                     icon: 'success'
                                 })
                                 idStr.innerHTML =respuesta[0].clientId
