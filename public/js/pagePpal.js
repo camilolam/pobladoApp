@@ -3,28 +3,98 @@ const idStr = document.querySelector('#customerId');
 const nameStr = document.querySelector('#name');
 const identificationStr = document.querySelector('#identification');
 const nContracts= document.querySelector('#numberOfContracts');
-const  asideMenu = document.querySelector('#aside_menu');
+const asideMenu = document.querySelector('#aside_menu');
 
 // buttons
 const btn_read = document.querySelector('#btn_read');
 const btn_auth = document.querySelector('#btn_auth');
 const btn_menu_responsive = document.querySelector('#btn_menu');
+const btn_customers = document.querySelector('#btn_customers');
+const btn_contracts = document.querySelector('#btn_contracts');
+const btn_employs = document.querySelector('#btn_employs');
+const btn_payments = document.querySelector('#btn_payments');
+const btn_contributions = document.querySelector('#btn_contributions');
+const btn_additional_movements = document.querySelector('#btn_additional_movements');
 
 //vars
 const identStr = document.querySelector('#ident');
 const usernameStr = document.querySelector('#username_auth');
-const passwordStr = document.querySelector('#password_auth')
+const passwordStr = document.querySelector('#password_auth');
 
 //sections 
 const customerSearchSection = document.querySelector('.customer_read');
 const authSection = document.querySelector('.auth_section');
 
 // program vars
-let menuFlag = false
+let menuFlag = false;
 
 
 btn_read.addEventListener('click',readCustomers);
 btn_auth.addEventListener('click', userValidation);
+
+btn_customers.addEventListener('click',()=>{
+    btn_customers.classList.remove('active')
+    btn_contracts.classList.remove('active')
+    btn_employs.classList.remove('active')
+    btn_payments.classList.remove('active')
+    btn_contributions.classList.remove('active')
+    btn_additional_movements.classList.remove('active')
+
+    btn_customers.classList.add('active')
+});
+
+btn_contracts.addEventListener('click',()=>{
+    btn_customers.classList.remove('active')
+    btn_contracts.classList.remove('active')
+    btn_employs.classList.remove('active')
+    btn_payments.classList.remove('active')
+    btn_contributions.classList.remove('active')
+    btn_additional_movements.classList.remove('active')
+
+    btn_contracts.classList.add('active')
+});
+
+btn_employs.addEventListener('click',()=>{
+    btn_customers.classList.remove('active')
+    btn_contracts.classList.remove('active')
+    btn_employs.classList.remove('active')
+    btn_payments.classList.remove('active')
+    btn_contributions.classList.remove('active')
+    btn_additional_movements.classList.remove('active')
+
+    btn_employs.classList.add('active')
+});
+btn_payments.addEventListener('click',()=>{
+    btn_customers.classList.remove('active')
+    btn_contracts.classList.remove('active')
+    btn_employs.classList.remove('active')
+    btn_payments.classList.remove('active')
+    btn_contributions.classList.remove('active')
+    btn_additional_movements.classList.remove('active')
+
+    btn_payments.classList.add('active')
+});
+btn_contributions.addEventListener('click',()=>{
+    btn_customers.classList.remove('active')
+    btn_contracts.classList.remove('active')
+    btn_employs.classList.remove('active')
+    btn_payments.classList.remove('active')
+    btn_contributions.classList.remove('active')
+    btn_additional_movements.classList.remove('active')
+
+    btn_contributions.classList.add('active')
+});
+btn_additional_movements.addEventListener('click',()=>{
+    btn_customers.classList.remove('active')
+    btn_contracts.classList.remove('active')
+    btn_employs.classList.remove('active')
+    btn_payments.classList.remove('active')
+    btn_contributions.classList.remove('active')
+    btn_additional_movements.classList.remove('active')
+
+    btn_additional_movements.classList.add('active')
+});
+
 btn_menu_responsive.addEventListener('click',()=>{
     if(menuFlag == false){
         asideMenu.style.display = 'block';
@@ -37,7 +107,7 @@ btn_menu_responsive.addEventListener('click',()=>{
 });
 
 customerSearchSection.style.display = 'none';
-
+asideMenu.style.display = 'none';
 
 function userValidation(){
     console.log(usernameStr.value)
@@ -67,6 +137,7 @@ function userValidation(){
                                 })
                                 authSection.style.display = 'none'
                                 customerSearchSection.style.display = 'block';
+                                asideMenu.style.display = 'block';
 
                             }else if(message.message == 'Denied'){
                                 Swal.fire({
