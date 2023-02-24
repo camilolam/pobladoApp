@@ -7,12 +7,15 @@ routes.post('/validation',(req,res)=>{
     let passwordReq = req.body.password
     req.getConnection((err,conn)=>{
         if(err) return res.send(err);
-        var queryStr = `SELECT * FROM auth_confirm where username = '${usernameReq}'`
-        conn.query(queryStr,(err,rows)=>{
+        conn.query(`SELECT * FROM auth_confirm where username = '${usernameReq}'`,(err,rows)=>{
             if(err) return res.send(err);
             if(rows.length!=0){
                 if(passwordReq==rows[0].password){
-                    res.json({ message:"Accepted"}) 
+                    conn.query(`INSERT INTO active set username = '${usernameReq}'`);
+                    res.json({
+                         message:"Accepted",
+                         username:usernameReq
+                        }) 
                 }else{
                     res.json({ message:"Denied" }) 
                 }
@@ -36,6 +39,26 @@ routes.get('/readCustomers/:ident',(req,res)=>{
             res.json(rows)          
         });
      });
+});
+
+routes.get('/validateActive',(req,res)=>{
+    req.getConnection((err,conn)=>{
+        if(err) return res.send(err);
+        conn.query('SELECT * FROM active',(err,active)=>{
+            if(err) return res.send(err)
+            if(active.length!=0){
+                console.log(active[0])
+                res.json({
+                    state:true,
+                    username:active[0].username
+                })
+            }else{
+                res.json({
+                    state:false
+                })
+            }
+        })
+    })
 });
 
 module.exports = routes

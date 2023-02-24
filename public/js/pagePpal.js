@@ -4,6 +4,7 @@ const nameStr = document.querySelector('#name');
 const identificationStr = document.querySelector('#identification');
 const nContracts= document.querySelector('#numberOfContracts');
 const asideMenu = document.querySelector('#aside_menu');
+const username_head = document.querySelector('#username_head');
 
 // buttons
 const btn_read = document.querySelector('#btn_read');
@@ -27,6 +28,7 @@ const authSection = document.querySelector('.auth_section');
 
 // program vars
 let menuFlag = false;
+const apiUrl = "http://192.168.0.117:9000"
 
 
 btn_read.addEventListener('click',readCustomers);
@@ -106,15 +108,33 @@ btn_menu_responsive.addEventListener('click',()=>{
     
 });
 
-customerSearchSection.style.display = 'none';
-asideMenu.style.display = 'none';
+
+fetch( `${apiUrl}/validateActive`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
+            .then(function(res){
+                if(res.ok){
+                    res.json()
+                        .then(function (active){
+                            console.log(active)
+                            if(active.state){
+                                console.log('hay una sesion activa')
+                                authSection.style.display = 'none'
+                                username_head.innerHTML = active.username
+                            }
+                            else{
+                                customerSearchSection.style.display = 'none';
+                                asideMenu.style.display = 'none';       
+                            }
+                        })
+                }
+            })
+
 
 function userValidation(){
     console.log(usernameStr.value)
     console.log(passwordStr.value)
     if(usernameStr.value != "" && passwordStr.value != ""){
         console.log(usernameStr.value)
-        fetch(`http://192.168.0.117:9000/validation`,{
+        fetch(`${apiUrl}/validation`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json"
@@ -135,6 +155,7 @@ function userValidation(){
                                     text:'You are available to use CVP APP',
                                     icon: 'success'
                                 })
+                                username_head.innerHTML = message.username
                                 authSection.style.display = 'none'
                                 customerSearchSection.style.display = 'block';
                                 asideMenu.style.display = 'block';
@@ -171,7 +192,7 @@ function readCustomers(){
     identificationStr.innerHTML =""
     nContracts.innerHTML =""
     if(identStr.value != ""){
-        fetch( `http://192.168.0.117:9000/readCustomers/${identStr.value}`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
+        fetch( `${apiUrl}/readCustomers/${identStr.value}`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
             .then(function(res){
                 if(res.ok){
                     res.json()
