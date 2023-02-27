@@ -16,6 +16,7 @@ const btn_employs = document.querySelector('#btn_employs');
 const btn_payments = document.querySelector('#btn_payments');
 const btn_contributions = document.querySelector('#btn_contributions');
 const btn_additional_movements = document.querySelector('#btn_additional_movements');
+const btn_close_session = document.querySelector('#btn_close_session');
 
 //vars
 const identStr = document.querySelector('#ident');
@@ -34,66 +35,36 @@ const apiUrl = "http://192.168.0.117:9000"
 btn_read.addEventListener('click',readCustomers);
 btn_auth.addEventListener('click', userValidation);
 
-btn_customers.addEventListener('click',()=>{
-    btn_customers.classList.remove('active')
-    btn_contracts.classList.remove('active')
-    btn_employs.classList.remove('active')
-    btn_payments.classList.remove('active')
-    btn_contributions.classList.remove('active')
-    btn_additional_movements.classList.remove('active')
 
+btn_close_session.addEventListener('click',()=>{
+    cleanButton()
+    btn_close_session.classList.add('active')
+})
+
+btn_customers.addEventListener('click',()=>{
+    cleanButton()
     btn_customers.classList.add('active')
 });
 
 btn_contracts.addEventListener('click',()=>{
-    btn_customers.classList.remove('active')
-    btn_contracts.classList.remove('active')
-    btn_employs.classList.remove('active')
-    btn_payments.classList.remove('active')
-    btn_contributions.classList.remove('active')
-    btn_additional_movements.classList.remove('active')
-
+    cleanButton()
     btn_contracts.classList.add('active')
 });
 
 btn_employs.addEventListener('click',()=>{
-    btn_customers.classList.remove('active')
-    btn_contracts.classList.remove('active')
-    btn_employs.classList.remove('active')
-    btn_payments.classList.remove('active')
-    btn_contributions.classList.remove('active')
-    btn_additional_movements.classList.remove('active')
-
+    cleanButton()
     btn_employs.classList.add('active')
 });
 btn_payments.addEventListener('click',()=>{
-    btn_customers.classList.remove('active')
-    btn_contracts.classList.remove('active')
-    btn_employs.classList.remove('active')
-    btn_payments.classList.remove('active')
-    btn_contributions.classList.remove('active')
-    btn_additional_movements.classList.remove('active')
-
+    cleanButton()
     btn_payments.classList.add('active')
 });
 btn_contributions.addEventListener('click',()=>{
-    btn_customers.classList.remove('active')
-    btn_contracts.classList.remove('active')
-    btn_employs.classList.remove('active')
-    btn_payments.classList.remove('active')
-    btn_contributions.classList.remove('active')
-    btn_additional_movements.classList.remove('active')
-
+    cleanButton()
     btn_contributions.classList.add('active')
 });
 btn_additional_movements.addEventListener('click',()=>{
-    btn_customers.classList.remove('active')
-    btn_contracts.classList.remove('active')
-    btn_employs.classList.remove('active')
-    btn_payments.classList.remove('active')
-    btn_contributions.classList.remove('active')
-    btn_additional_movements.classList.remove('active')
-
+    cleanButton()
     btn_additional_movements.classList.add('active')
 });
 
@@ -128,6 +99,14 @@ fetch( `${apiUrl}/validateActive`) // hace una petición get por defecto, si es 
                 }
             })
 
+function cleanButton(){
+    btn_customers.classList.remove('active')
+    btn_contracts.classList.remove('active')
+    btn_employs.classList.remove('active')
+    btn_payments.classList.remove('active')
+    btn_contributions.classList.remove('active')
+    btn_additional_movements.classList.remove('active')
+}
 
 function userValidation(){
     console.log(usernameStr.value)
