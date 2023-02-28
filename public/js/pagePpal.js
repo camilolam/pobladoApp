@@ -51,7 +51,11 @@ btn_close_session.addEventListener('click',()=>{
                         .then(function (res){
                             console.log(res)
                             if(res.res == "sesion closed"){
+                                customerSearchSection.style.display = 'none';
+                                asideMenu.style.display = 'none';    
+                                authSection.style.display = 'flex'
                                 window.location = `${apiUrl}`
+
                             }
                             else{
                                 Swal.fire({
