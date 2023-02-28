@@ -109,6 +109,7 @@ fetch( `${apiUrl}/validateActive`) // hace una petición get por defecto, si es 
                 if(res.ok){
                     res.json()
                         .then(function (active){
+
                             console.log(active)
                             if(active.state){
                                 console.log('hay una sesion activa')
