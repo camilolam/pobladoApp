@@ -61,4 +61,15 @@ routes.get('/validateActive',(req,res)=>{
     })
 });
 
+routes.get('/closeSesion',(req,res)=>{
+    req.getConnection((err,conn)=>{
+        if(err) return res.send(err);
+        conn.query('TRUNCATE active');
+        res.json({
+            res:"sesion closed"
+        });
+    });
+});
+
+
 module.exports = routes

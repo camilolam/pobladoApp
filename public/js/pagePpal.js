@@ -29,7 +29,8 @@ const authSection = document.querySelector('.auth_section');
 
 // program vars
 let menuFlag = false;
-const apiUrl = "http://192.168.0.117:9000"
+//const apiUrl = "http://192.168.0.117:9000"
+const apiUrl = "http://192.168.1.9:9000"
 
 
 btn_read.addEventListener('click',readCustomers);
@@ -39,6 +40,29 @@ btn_auth.addEventListener('click', userValidation);
 btn_close_session.addEventListener('click',()=>{
     cleanButton()
     btn_close_session.classList.add('active')
+    Swal.fire({
+        title:"Sesion Clossed",
+        icon: 'success'
+    })
+    fetch( `${apiUrl}/closeSesion`) 
+            .then(function(res){
+                if(res.ok){
+                    res.json()
+                        .then(function (res){
+                            console.log(res)
+                            if(res.res == "sesion closed"){
+                                window.location = `${apiUrl}`
+                            }
+                            else{
+                                Swal.fire({
+                                    title:"Unknown Error",
+                                    icon: 'error'
+                                })
+                            }
+                        })
+                }
+            })
+    
 })
 
 btn_customers.addEventListener('click',()=>{
