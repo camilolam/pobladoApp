@@ -4,6 +4,7 @@ const path  = require('path');
 const myconn = require('express-myconnection');
 const routes = require('./routes')
 const cors = require('cors')
+const bcrypt = require("bcryptjs");
 
 
 var app = express();

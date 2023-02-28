@@ -1,8 +1,9 @@
 const express =  require('express');
 const routes = express.Router()
+const bcrypt = require("bcryptjs");
 
 routes.post('/validation',(req,res)=>{
-    console.log(req.body)
+    //console.log(req.body)
     let usernameReq = req.body.username
     let passwordReq = req.body.password
     req.getConnection((err,conn)=>{
@@ -10,15 +11,23 @@ routes.post('/validation',(req,res)=>{
         conn.query(`SELECT * FROM auth_confirm where username = '${usernameReq}'`,(err,rows)=>{
             if(err) return res.send(err);
             if(rows.length!=0){
-                if(passwordReq==rows[0].password){
-                    conn.query(`INSERT INTO active set username = '${usernameReq}'`);
-                    res.json({
-                         message:"Accepted",
-                         username:usernameReq
-                        }) 
-                }else{
-                    res.json({ message:"Denied" }) 
-                }
+                bcrypt.compare(passwordReq, rows[0].password, (err, coinciden) => {
+                    if (err) {
+                        
+                        console.log("Error comprobando:", err);
+                    } else {
+                        console.log("¿La contraseña coincide?: " + coinciden);
+                        if(coinciden){
+                            conn.query(`INSERT INTO active set username = '${usernameReq}'`);
+                            res.json({
+                                 message:"Accepted",
+                                 username:usernameReq
+                                }) 
+                        }else{
+                            res.json({ message:"Denied" }) 
+                        }
+                    }
+                });
             }
             else{
                 res.json({message:"user not found"}) 
