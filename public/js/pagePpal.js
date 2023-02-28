@@ -113,6 +113,7 @@ fetch( `${apiUrl}/validateActive`) // hace una petición get por defecto, si es 
                             if(active.state){
                                 console.log('hay una sesion activa')
                                 authSection.style.display = 'none'
+                                customerSearchSection.style.display = ' flex'
                                 username_head.innerHTML = active.username
                             }
                             else{
