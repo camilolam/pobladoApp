@@ -29,8 +29,8 @@ const authSection = document.querySelector('.auth_section');
 
 // program vars
 let menuFlag = false;
-const apiUrl = "http://192.168.0.117:9000"
-//const apiUrl = "http://192.168.1.9:9000"
+//const apiUrl = "http://192.168.0.117:9000"
+const apiUrl = "http://192.168.1.9:9000"
 
 
 btn_read.addEventListener('click',readCustomers);
