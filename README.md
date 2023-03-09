@@ -29,3 +29,16 @@ En el package.json, en el apartado script se introduce la siguiente sentencia
 "dev": "nodemon index.js"
 
 Y para correr el servdor se hacer uso de la sentencia "npm run dev"
+
+
+---------  
+
+Se ha organizado una carpeta para crear el servidor de la aplicación pero con python y django. Es necesario saber que se necesita un entorno virtual para trabajar de forma adecuada para cada proyecto, es por esto que en el siguiente link, puedes aprender como crear entornos virtuales según sea tu sistema operativo
+
+https://docs.python.org/es/3/tutorial/venv.html
+
+Estas son las librerías que se deben intstalar para crear el servidor con python, hay que tener activado el entorno virtual e instalarlos dentro del mismo
+
+pip install "nombre paquete"
+
+* Django
