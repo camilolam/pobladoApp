@@ -131,6 +131,18 @@ fetch( `${apiUrl}/validateActive`) // hace una petición get por defecto, si es 
                 }
             })
 
+
+fetch( `http://127.0.0.1:8000/hello/`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
+            .then(function(res){
+                if(res.ok){
+                    console.log("Hola estoy acá")
+                    res.json()
+                    .then(function(res){
+                        console.log(res["name"])
+                    })  
+                }
+            })
+
 function cleanButton(){
     btn_customers.classList.remove('active')
     btn_contracts.classList.remove('active')
