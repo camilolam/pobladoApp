@@ -30,8 +30,8 @@ const authSection = document.querySelector('.auth_section');
 // program vars
 let menuFlag = false;
 //const apiUrl = "http://192.168.0.117:9000"
-const apiUrl = "http://192.168.1.9:9000"
-
+const apiUrl = "http://192.168.0.112:9000"
+const apiUrlPy = "http://127.0.0.1:8000"
 
 
 btn_read.addEventListener('click',readCustomers);
@@ -114,8 +114,6 @@ fetch( `${apiUrl}/validateActive`) // hace una petición get por defecto, si es 
                 if(res.ok){
                     res.json()
                         .then(function (active){
-
-                            console.log(active)
                             if(active.state){
                                 console.log('hay una sesion activa')
                                 authSection.style.display = 'none'
@@ -132,7 +130,7 @@ fetch( `${apiUrl}/validateActive`) // hace una petición get por defecto, si es 
             })
 
 
-fetch( `http://127.0.0.1:8000/hello/`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
+/*fetch( `http://127.0.0.1:8000/hello/`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
             .then(function(res){
                 if(res.ok){
                     console.log("Hola estoy acá")
@@ -141,7 +139,7 @@ fetch( `http://127.0.0.1:8000/hello/`) // hace una petición get por defecto, si
                         console.log(res["name"])
                     })  
                 }
-            })
+            })*/
 
 function cleanButton(){
     btn_customers.classList.remove('active')
@@ -215,13 +213,13 @@ function readCustomers(){
     identificationStr.innerHTML =""
     nContracts.innerHTML =""
     if(identStr.value != ""){
-        fetch( `${apiUrl}/readCustomers/${identStr.value}`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
+        fetch(`${apiUrl}/readCustomers/${identStr.value}`) //`${apiUrl}/readCustomers/${identStr.value}`) // hace una petición get por defecto, si es necesario se le debe decir cuando es post
             .then(function(res){
                 if(res.ok){
                     res.json()
                         .then(function (respuesta){
-                            console.log(respuesta)
-                            console.log(respuesta.length)
+                            console.log(respuesta.name)
+                           console.log(respuesta.length)
                             if(respuesta.length != 0){
                                
                                 Swal.fire({
@@ -242,7 +240,10 @@ function readCustomers(){
                             }
                             
                         })
+                }else{
+                    console.log("Customer not found")
                 }
+                
             })
         }
         else{

@@ -1,6 +1,6 @@
 const express =  require('express');
 const routes = express.Router()
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs"); // encriptar contraseñas
 
 routes.post('/validation',(req,res)=>{
     //console.log(req.body)
