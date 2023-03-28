@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 import json
 import sys
-import MySQLdb
+#import MySQLdb
+import pymysql
 
 
 class customer(object):
@@ -26,8 +27,9 @@ class customer(object):
 
 def queryDb(sql,count):#0 all - 1 one
     try:
-        db = MySQLdb.connect("www.db4free.net","camilocanaveral","Maria1234.","cvp_info" )
-    except MySQLdb.Error as e:
+        db = pymysql.connect(host="www.db4free.net",user="camilocanaveral",passwd="Maria1234.",db="cvp_info" ) #MySQLdb
+        print("Se ha conectado correctamente")
+    except pymysql.Error as e:
         sys.exit(1)
 
     cursor = db.cursor()
@@ -54,7 +56,7 @@ def dbConnection(request):
 
 
 def readCustomers(request,ident):
-    resp=[]
+    
     sql="select * from clients where identification=%s"%(ident)
     res=queryDb(sql,1)
     print("Respuesta res")

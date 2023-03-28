@@ -42,3 +42,4 @@ Estas son las librerías que se deben intstalar para crear el servidor con pytho
 pip install "nombre paquete"
 
 * Django
+* pymysql -> manejo de bases de datos
