@@ -19,10 +19,10 @@ class customer(object):
     
     def serializer(self):
         return {
-            "clientId":self.id,
+            "customerId":self.id,
             "name": self.name,
             "identification": self.identification,
-            "numberOfContracts":  self.nContracts
+            "Number Of Contracts":  self.nContracts
         }
 
 def queryDb(sql,count):#0 all - 1 one
